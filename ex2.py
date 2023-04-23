@@ -34,5 +34,5 @@ df_fusion[Encaisse] = pd.to_numeric(df_fusion[Encaisse], errors='coerce')
 #Filtrage
 filtered_df = df_fusion[(df_fusion[Dif] > 0) & (df_fusion[Encaisse] < 300)]
 #Export en csv
-filtered_df.to_csv(r"resul.csv", index=None, header=True)
+filtered_df.to_csv(r"teams.csv", index=None, header=True)
 
