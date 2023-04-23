@@ -15,7 +15,7 @@ def npage(page_num):
 
     return df
 
-
+#parcours les pages 1 à 10
 dtable = []
 for page_num in range(1, 10):
     df_fi = npage(page_num)
