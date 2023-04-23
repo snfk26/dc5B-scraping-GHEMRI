@@ -15,24 +15,25 @@ def npage(page_num):
 
     return df
 
-#Fusion des dataframe
+
 dtable = []
-for page_num in range(1, 10):
+for page_num in range(0, 10):
     df_fi = npage(page_num)
     dtable.append(df_fi)
-    df_fusion = pd.concat(dtable, ignore_index=True)
-    pd.DataFrame(df_fusion, columns=['Team Name', 'Win %', 'Losses', 'Goals For (GF)','Goals Against (GA)', '+ / -'])
+    df_fusion = pd.concat(dtable, ignore_index=False)
+    pd.DataFrame(df_fusion, columns=['Team Name','Win %','Losses','Goals For (GF)','Goals Against (GA)','+ / -'])
 
 
-Dif = "+ / -"
-Encaisse = 'Goals Against (GA)'
+    Dif = "+ / -"
+    Encaisse = 'Goals Against (GA)'
+    if Dif > "0" and Encaisse < "300":
+    #Conversion en numérique avant filtrage
+        df_fusion[Dif] = pd.to_numeric(df_fusion[Dif], errors='coerce')
+        df_fusion[Encaisse] = pd.to_numeric(df_fusion[Encaisse], errors='coerce')
 
-#Conversion en numérique avant filtrage
-df_fusion[Dif] = pd.to_numeric(df_fusion[Dif], errors='coerce')
-df_fusion[Encaisse] = pd.to_numeric(df_fusion[Encaisse], errors='coerce')
-
-#Filtrage
-filtered_df = df_fusion[(df_fusion[Dif] > 0) & (df_fusion[Encaisse] < 300)]
-#Export en csv
-filtered_df.to_csv(r"teams.csv", index=None, header=True)
+    #Filtrage
+    filtered_df = df_fusion[(df_fusion[Dif] > 0) & (df_fusion[Encaisse] < 300)]
+    header = ';'.join(filtered_df.columns)
+    #Export en csv
+    filtered_df.to_csv(r"teams.csv", index=False, header=True, sep=';')
 
