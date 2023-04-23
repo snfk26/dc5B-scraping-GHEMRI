@@ -26,10 +26,10 @@ for page_num in range(1, 10):
 
     Dif = "+ / -"
     Encaisse = 'Goals Against (GA)'
-    if Dif > "0" and Encaisse < "300":
+    #if Dif > "0" and Encaisse < "300":
     #Conversion en numérique avant filtrage
-        df_fusion[Dif] = pd.to_numeric(df_fusion[Dif], errors='coerce')
-        df_fusion[Encaisse] = pd.to_numeric(df_fusion[Encaisse], errors='coerce')
+    df_fusion[Dif] = pd.to_numeric(df_fusion[Dif], errors='coerce')
+    df_fusion[Encaisse] = pd.to_numeric(df_fusion[Encaisse], errors='coerce')
 
     #Filtrage
     filtered_df = df_fusion[(df_fusion[Dif] > 0) & (df_fusion[Encaisse] < 300)]
