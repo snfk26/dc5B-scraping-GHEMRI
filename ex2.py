@@ -17,7 +17,7 @@ def npage(page_num):
 
 
 dtable = []
-for page_num in range(0, 10):
+for page_num in range(1, 10):
     df_fi = npage(page_num)
     dtable.append(df_fi)
     df_fusion = pd.concat(dtable, ignore_index=False)
